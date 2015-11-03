@@ -1,0 +1,31 @@
+#include <hidef.h>      /* common defines and macros */
+#include "derivative.h"      /* derivative-specific definitions */
+#define Mask   0x80
+ uchar ovelflow=0;
+
+
+
+
+void main(void) {
+  /* put your own code here */
+                    DDRB=0xFF;    //make PB an output
+                    PORTB=0x00;
+                    TSCR1=0x80;      // enable timer
+                    TSCR2=0x05;    // no interrupt, prescaler=32  (see section ())
+                    while(1)
+                      {
+                        TFLG2=0x80;   // clear TOF
+                        //while(!(TFLG2 & Mask   ))
+                       if(TFLG2==Mask)
+                               ovelflow= ovelflow+1;
+                        PORTB= ovelflow;
+                        if( ovelflow==10)
+                        break;
+                      }
+
+  
+
+
+
+  /* please make sure that you never leave main */
+}
