@@ -1,0 +1,34 @@
+#include <hidef.h>      /* common defines and macros */
+#include "derivative.h"      /* derivative-specific definitions */
+
+               
+
+void main(void) {
+  /* put your own code here */
+  
+               
+               uchar j=0;
+               uchar UserInput [100];
+               uchar level=3;
+               DDRB=0x00;
+               
+               
+
+	
+
+
+  for(;;) { 
+                   for(j=0;j<= level ; ) {
+                
+                     if(PORTB != 0) {
+                  
+                          UserInput[j]=PORTB;
+                          j++;
+                }
+                    
+                   /*check timer here*/
+                
+               }  
+                } /* loop forever */
+  /* please make sure that you never leave main */
+}
