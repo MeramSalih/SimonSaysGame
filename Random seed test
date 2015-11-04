@@ -1,0 +1,22 @@
+#include <hidef.h>                               /* common defines and macros */ 
+ #include "derivative.h"                         /* derivative-specific definitions */  
+ 
+uint RandomSeed=0;
+ 
+ void main(void) 
+ { 
+   DDRA = 0xFF;                                /*Set PORTA to output*/ 
+   DDRE=0x00;                                  /* set PORTE to input*/
+   TSCR1=0x80;                                 /*Enable timer */ 
+   TSCR2=0x05;                                 /*no interrupt, prescaler=32  (see section ())*/
+   PORTA=0x00;                                 /* clear PORTA */
+   
+   for(;;) { 
+   while(PORTE_BIT0 == 1)                      /*only run code when on/off switch is pressed*/
+   {     
+           RandomSeed=TCNT;                    /* read the value of the timer counter register*/
+           PORTA=0xFF;
+         }                                     /* loop forever */ 
+                                               /* please make sure that you never leave main */ 
+} 
+ } 
